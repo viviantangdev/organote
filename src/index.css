@@ -1,5 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-button{
+button {
   @apply bg-blue-400 p-2;
 }
+
+.backdrop {
+  @apply fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black opacity-60 backdrop-blur-sm transition-opacity duration-300;
+}
+
+.modal{
+  @apply relative m-4 p-4 w-2/5 rounded-lg bg-white shadow-sm;
+}
+

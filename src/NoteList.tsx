@@ -1,17 +1,26 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import type { Note, Tag } from './types';
+import EditTagsModal from './EditTagsModal';
 import NoteCard from './NoteCard';
+import type { Note, Tag } from './types';
 
 type NoteListProps = {
   availableTags: Tag[];
   notes: Note[];
+  onUpdateTag: (id: string, label: string) => void;
+  onDeleteTag: (id: string) => void;
 };
 
-const NoteList = ({ availableTags, notes }: NoteListProps) => {
+const NoteList = ({
+  availableTags,
+  notes,
+  onUpdateTag,
+  onDeleteTag,
+}: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState<string>('');
+  const [isEditTagsModal, setIsEditTagsModal] = useState(false);
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -36,7 +45,9 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
         <Link to='/new'>
           <button type='button'>Create</button>
         </Link>
-        <button type='button'>Edit Tags</button>
+        <button type='button' onClick={() => setIsEditTagsModal(true)}>
+          Edit Tags
+        </button>
       </div>
 
       <div className='flex'>
@@ -83,10 +94,18 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
       <div>
         {filteredNotes.map((note) => (
           <div key={note.id}>
-              <NoteCard id={note.id} title={note.title} tags={note.tags}/>
+            <NoteCard id={note.id} title={note.title} tags={note.tags} />
           </div>
         ))}
       </div>
+      {isEditTagsModal ? (
+        <EditTagsModal
+          availableTags={availableTags}
+          handleClose={() => setIsEditTagsModal(false)}
+          onDeleteTag={onDeleteTag}
+          onUpdateTag={onUpdateTag}
+        />
+      ) : null}
     </div>
   );
 };
