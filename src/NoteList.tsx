@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import type { Note, Tag } from './types';
+import NoteCard from './NoteCard';
 
 type NoteListProps = {
   availableTags: Tag[];
@@ -81,8 +82,9 @@ const NoteList = ({ availableTags, notes }: NoteListProps) => {
 
       <div>
         {filteredNotes.map((note) => (
-          <p>{note.title}</p>
-          
+          <div key={note.id}>
+              <NoteCard id={note.id} title={note.title} tags={note.tags}/>
+          </div>
         ))}
       </div>
     </div>
