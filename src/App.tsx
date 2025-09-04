@@ -26,10 +26,23 @@ function App() {
       ];
     });
   }
+
+  function addTag(tag: Tag) {
+    setTags((prev) => [...prev, tag]);
+  }
   return (
     <Routes>
       <Route path='/' element={<h1>home</h1>} />
-      <Route path='/new' element={<NewNote onSubmit={onCreateNote}/>} />
+      <Route
+        path='/new'
+        element={
+          <NewNote
+            onSubmit={onCreateNote}
+            onAddTag={addTag}
+            availableTags={tags}
+          />
+        }
+      /> 
       <Route path='/:id'>
         <Route index element={<h1>Show</h1>} />
         <Route path='edit' element={<h1>Edit</h1>} />
