@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { Tag } from './types';
+import type { Tag } from '../types/types';
 
 type NoteCardProps = {
   id: string;
@@ -10,10 +10,12 @@ type NoteCardProps = {
 const NoteCard = ({ id, title, tags }: NoteCardProps) => {
   return (
     <Link to={`/${id}`}>
-    <div>
-      <p>{title}</p>
-      {tags.map((tag) => (<p key={tag.id}>{tag.label}</p>))}
-    </div>
+      <div>
+        <p>{title}</p>
+        {tags.map((tag) => (
+          <p key={tag.id}>{tag.label}</p>
+        ))}
+      </div>
     </Link>
   );
 };

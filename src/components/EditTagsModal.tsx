@@ -1,4 +1,4 @@
-import type { Tag } from './types';
+import type { Tag } from '../types/types';
 
 type EditTagsProps = {
   availableTags: Tag[];
@@ -34,7 +34,9 @@ const EditTagsModal = ({
                 className='block min-w-0 grow bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6'
                 onChange={(e) => onUpdateTag(tag.id, e.target.value)}
               />
-              <button type='button' onClick={() => onDeleteTag(tag.id)}>&times;</button>
+              <button type='button' onClick={() => onDeleteTag(tag.id)}>
+                &times;
+              </button>
             </div>
           ))}
         </div>

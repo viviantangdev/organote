@@ -1,5 +1,5 @@
-import { Navigate, Outlet,useParams } from 'react-router-dom';
-import type { Note } from './types';
+import { Navigate, Outlet, useParams } from 'react-router-dom';
+import type { Note } from '../types/types';
 
 type NotesLayoutProps = {
   notes: Note[];
@@ -14,7 +14,3 @@ const NoteLayout = ({ notes }: NotesLayoutProps) => {
 };
 
 export default NoteLayout;
-
-
-
-

@@ -1,6 +1,6 @@
 import Markdown from 'react-markdown';
 import { Link, useNavigate } from 'react-router-dom';
-import { useNote } from './hooks/useNote';
+import { useNote } from '../hooks/useNote';
 
 type NoteProps = {
   onDelete: (id: string) => void;

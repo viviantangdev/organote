@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid';
-import EditNote from './EditNote';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import NewNote from './NewNote';
-import Note from './Note';
-import NoteLayout from './NoteLayout';
-import NoteList from './NoteList';
-import type { NoteData, RawNote, Tag } from './types';
+import Dashboard from './routes/Dashboard';
+import EditNote from './routes/EditNote';
+import NewNote from './routes/NewNote';
+import Note from './routes/Note';
+import NoteLayout from './routes/NoteLayout';
+import type { NoteData, RawNote, Tag } from './types/types';
 
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', []);
@@ -76,7 +76,7 @@ function App() {
       <Route
         path='/'
         element={
-          <NoteList
+          <Dashboard
             availableTags={tags}
             notes={notesWithTags}
             onUpdateTag={onUpdateTag}

@@ -1,23 +1,23 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
-import EditTagsModal from './EditTagsModal';
-import NoteCard from './NoteCard';
-import type { Note, Tag } from './types';
+import EditTagsModal from '../components/EditTagsModal';
+import NoteCard from '../components/NoteCard';
+import type { Note, Tag } from '../types/types';
 
-type NoteListProps = {
+type DashboardProps = {
   availableTags: Tag[];
   notes: Note[];
   onUpdateTag: (id: string, label: string) => void;
   onDeleteTag: (id: string) => void;
 };
 
-const NoteList = ({
+const Dashboard = ({
   availableTags,
   notes,
   onUpdateTag,
   onDeleteTag,
-}: NoteListProps) => {
+}: DashboardProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState<string>('');
   const [isEditTagsModal, setIsEditTagsModal] = useState(false);
@@ -110,4 +110,4 @@ const NoteList = ({
   );
 };
 
-export default NoteList;
+export default Dashboard;
