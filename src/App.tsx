@@ -4,6 +4,7 @@ import { v4 as uuidV4 } from 'uuid';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import NewNote from './NewNote';
 import type { NoteData, RawNote, Tag } from './types';
+import NoteList from './NoteList';
 
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>('NOTES', []);
@@ -32,7 +33,7 @@ function App() {
   }
   return (
     <Routes>
-      <Route path='/' element={<h1>home</h1>} />
+      <Route path='/' element={<NoteList availableTags={tags} notes={notesWithTags}/>} />
       <Route
         path='/new'
         element={
